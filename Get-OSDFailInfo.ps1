@@ -15,10 +15,7 @@ $List_FileSearch = @(
 $List_Ping = @(
     "127.0.0.1",
     "1.1.1.1",
-    "8.8.8.8",
-    "10.255.128.52",
-    "10.255.128.51",
-    "10.255.32.41"
+    "8.8.8.8"
 )
 
 #############################################
@@ -231,5 +228,3 @@ if(Test-Path($Path_BIOSConf)){
 Write-Host
 Write-Host
 Write-Host "DONE!"
-Write-Host Exit
-Exit
