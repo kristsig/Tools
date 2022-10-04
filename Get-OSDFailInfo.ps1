@@ -218,16 +218,17 @@ Get-ChildItem Cert:\ -Recurse | Out-File -FilePath $Path_NewFile
 $Path_NewFile = $Path_NewFolder + "\" + $HW_Serialnumber + "_Cert_LocalMachine_My.txt"
 Get-ChildItem -path cert:\LocalMachine\My | Format-List Name, Subject, FriendlyName, DnsNameList, EnhancedKeyUsageList, SendAsTrustedIssuer | Out-File -FilePath $Path_NewFile
 
-# Get BIOS config if device is from HP (Requires HP BIOS utility configuration tool)
-if((Get-CimInstance -Class Win32_ComputerSystemProduct -ComputerName $RemoteHost).Vendor -contains 'HP'){
-    $Path_BIOSConf = (Get-ChildItem -Path $Letter_ThisUSBDrive -Filter "BiosConfigUtility64.exe" -Recurse -ErrorAction SilentlyContinue -Force | ForEach-Object{$_.FullName})
-    if(Test-Path($Path_BIOSConf)){
-        $Path_NewFile = $Path_NewFolder + "\" + $HW_Serialnumber + "_BIOSConf.txt"
-        . $Path_BIOSConf /get:$Path_NewFile
-    }
+$Path_BIOSConf = (Get-ChildItem -Path $Letter_ThisUSBDrive -Filter "BiosConfigUtility64.exe" -Recurse -ErrorAction SilentlyContinue -Force | ForEach-Object{$_.FullName})
+if(Test-Path($Path_BIOSConf)){
+    $Path_NewFile = $Path_NewFolder + "\" + $HW_Serialnumber + "_BIOSConf.txt"
+    . $Path_BIOSConf /get:$Path_NewFile
 }
+
+
 
 # End of script
 Write-Host
 Write-Host
 Write-Host "DONE!"
+Write-Host Exit
+Exit
