@@ -1,0 +1,1 @@
+powershell C:\Tools\HLM-Tools\ScannerShutdownScript\ScanPowerOFF.ps1
