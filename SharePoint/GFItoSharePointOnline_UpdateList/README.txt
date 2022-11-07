@@ -1,0 +1,1 @@
+This is a sample script to update a list in SharePoint
